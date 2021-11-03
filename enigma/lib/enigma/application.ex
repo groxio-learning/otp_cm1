@@ -10,11 +10,7 @@ defmodule Enigma.Application do
     IO.puts("application starting...")
 
     children = [
-      Supervisor.child_spec({Enigma.Server, :superman}, id: 1),
-      Supervisor.child_spec({Enigma.Server, :slickrick}, id: 2),
-      Supervisor.child_spec({Enigma.Server, :wonderwoman}, id: 3),
-      Supervisor.child_spec({Enigma.Server, :spiderman}, id: 4),
-      Supervisor.child_spec({Enigma.Server, :deadpool}, id: 5)
+      {DynamicSupervisor, strategy: :one_for_one, name: :sup}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

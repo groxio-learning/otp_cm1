@@ -23,4 +23,8 @@ defmodule Enigma.Server do
     IO.puts("#{name} has started ...")
     GenServer.start_link(__MODULE__, :generate, name: name)
   end
+
+  def child_spec(name) do
+    %{id: name, start: {__MODULE__, :start_link, [name]}}
+  end
 end

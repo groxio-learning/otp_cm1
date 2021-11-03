@@ -1,18 +1,11 @@
 defmodule Enigma do
-  @moduledoc """
-  Documentation for `Enigma`.
-  """
+  alias Enigma.Server
 
-  @doc """
-  Hello world.
+  def start(name) do
+    {:ok, _agent1} = DynamicSupervisor.start_child(:sup, {Server, name})
+  end
 
-  ## Examples
-
-      iex> Enigma.hello()
-      :world
-
-  """
-  def hello do
-    :world
+  def move(name, guess) do
+    Server.move(name, guess)
   end
 end
